@@ -6,8 +6,10 @@ Very short test for hubo responsiveness
 Instructions
 ============
 
-First make sure you compile the code for this repository by running
+First, download and compile the code:
 
+    git clone https://github.com/swatbotics/hubo-sine-test.git
+    cd hubo-sine-test
     make
     
 It should produce a single binary named `hubo-sine-test`.
@@ -19,10 +21,10 @@ Turn on the robot motors. Start the hubo daemon using
 The console will appear. Verify that the robot is free from obstruction
 and type 
 
-    homeAll 
+    homeAll
     
 to home the motors. Now press Ctrl+C to leave the hubo-ach console. Next,
-in the directory for this repository, run the command 
+with the robot still suspended above the ground, run the command 
 
     sudo ./hubo-sine-test LHP
     
