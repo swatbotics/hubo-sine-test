@@ -42,7 +42,7 @@ to bring up the console again, and enter the command
     iniSensors
     
 to zero all of the senors.  Exit the console by pressing Ctrl+C. Now run the
-two sine test commands from beforeagain:
+two sine test commands from before:
 
     ./hubo-sine-test LHP
     ./hubo-sine-test LSP
