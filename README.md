@@ -24,13 +24,13 @@ and type
 to home the motors. Now press Ctrl+C to leave the hubo-ach console. Next,
 in the directory for this repository, run the command 
 
-    ./hubo-sine-test LHP
+    sudo ./hubo-sine-test LHP
     
 It will run the left hip pitch motor with a sinusoidal pattern for 8 
 seconds and write a log file named `sine_test_LAP_0000.txt`, After it
 finishes, run the command
 
-    ./hubo-sine-test LSP
+    sudo ./hubo-sine-test LSP
     
 to do the same thing with the left shoulder pitch joint. Now we want to run 
 the program again, after initializing sensors.  Type
@@ -44,8 +44,8 @@ to bring up the console again, and enter the command
 to zero all of the senors.  Exit the console by pressing Ctrl+C. Now run the
 two sine test commands from before:
 
-    ./hubo-sine-test LHP
-    ./hubo-sine-test LSP
+    sudo ./hubo-sine-test LHP
+    sudo ./hubo-sine-test LSP
     
 At the end of the four commands, you will have four log files: 
 
