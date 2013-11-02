@@ -49,6 +49,16 @@ def estimate_correlation(name1, signal1,
     print 'max correllation between {0} and {1} is {2} at offset {3} (dt ~ {4})'.format(
         name1, name2, results[best_shift], best_offset, best_offset*mean_dt)
 
+def check_skip(name, time, x, color, sz=None):
+    dt = diff(time)
+    dx = diff(x)
+    nz = np.nonzero(np.abs(dx) < 1e-17)[0]
+    tnz = time[nz] + 0.5*dt[nz]
+    xnz = x[nz] + 0.5*dx[nz]
+    plt.plot(tnz, xnz, 'o', markeredgecolor=color, markerfacecolor='none', markersize=sz)
+    print 'got {0} small steps for {1}'.format(len(nz), name)
+
+
 ######################################################################
 
 if len(sys.argv) != 2:
@@ -93,6 +103,10 @@ plt.plot(time, ref, 'r', label='ref')
 plt.plot(time, pos, 'b', label='pos')
 plt.xlabel('Time (s)')
 plt.ylabel('Angle (rad)')
+
+check_skip('cmd', time, cmd, 'g', 3)
+check_skip('ref', time, ref, 'r', 6)
+check_skip('pos', time, pos, 'b', 12)
 
 if nplots == 3:
     plt.subplot(nplots,1,3)
