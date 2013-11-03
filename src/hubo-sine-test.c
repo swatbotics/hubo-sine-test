@@ -132,6 +132,9 @@ int main(int argc, char** argv) {
 
   int active_joint_index = -1;
 
+  int missed_count = 0;
+  int total_count = 0;
+
   int64_t start_time, cur_time;
 
   double elapsed_time, u;
@@ -251,6 +254,8 @@ int main(int argc, char** argv) {
   start_time = gettime_nsec_int64();
   cur_time = start_time;
   elapsed_time = 0;
+  missed_count = 0;
+  total_count = 0;
 
   while (elapsed_time < total_time) {
 
@@ -259,8 +264,7 @@ int main(int argc, char** argv) {
                      ACH_O_WAIT | ACH_O_LAST);
     
     if (result == ACH_MISSED_FRAME) {
-      printf("Warning: missed frame at t=%f\n", elapsed_time);
-      continue; 
+      ++missed_count;
     } else if (result != ACH_OK) {
       fprintf(stderr, "Error getting state at time %f: %s\n",
               elapsed_time, ach_result_to_string(result));
@@ -302,8 +306,12 @@ int main(int argc, char** argv) {
     // update time
     cur_time = gettime_nsec_int64();
     elapsed_time = nsec_to_double_sec( cur_time - start_time );
+    ++total_count;
 
   }
+
+  printf("asked for %d frames, got %d (missed %d)\n",
+         total_count, total_count-missed_count, missed_count);
 
   // return refs to 0
 
